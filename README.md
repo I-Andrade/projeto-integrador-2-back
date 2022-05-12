@@ -14,11 +14,11 @@ activate.bat
 Clonar o repositório
 git clone https://github.com/I-Andrade/projeto-integrador-2-backend.git
 
-Instalar as dependências do projeto:
-pip install -r requirements.txt
-
 Entrar na pasta do projeto
 cd projeto-integrador-2-backend
+
+Instalar as dependências do projeto:
+pip install -r requirements.txt
 
 Faça a primeira Migrate
 python manage.py migrate

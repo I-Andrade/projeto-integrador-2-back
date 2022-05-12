@@ -1,0 +1,64 @@
+from django.db import models
+
+# Create your models here.
+
+class Clientes(models.Model):
+    id = models.AutoField(primary_key=True)
+    tipo = models.IntegerField(max_length=3)
+    nome = models.CharField(max_length=254)
+    cpf_cnpj = models.CharField(max_length=14)
+    data_nascimento = models.DateField()
+    telefone = models.CharField(max_length=14)
+    email = models.CharField(max_length=254)
+    cep = models.CharField(max_length=8)
+    logradouro = models.CharField(max_length=60)
+    bairro = models.CharField(max_length=60)
+    complemento = models.CharField(max_length=200)
+    cidade = models.CharField(max_length=60)
+    uf = models.CharField(max_length=50)
+    observacoes = models.TextField(max_length=200)
+    ativo = models.BooleanField(default=True)
+
+class Transportadoras(models.Model):
+    id = models.AutoField(primary_key=True)
+    nome = models.CharField(max_length=254)
+class FormaPagto(models.Model):
+    id = models.AutoField(primary_key=True)
+    descricao = models.CharField(max_length=60)   
+    parcelas = models.IntegerField(max_length=2)
+class Status(models.Model):
+    id = models.AutoField(primary_key=True)
+    descricao = models.CharField(max_length=60)     
+class Pedido(models.Model):
+    id = models.AutoField(primary_key=True)
+    cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)
+    data_pedido = models.DateField()
+    data_entrega = models.DateField()
+    obs = models.TextField(max_length=255)  
+    status = models.CharField(max_length=10)
+    valor_total_bruto = models.FloatField(max_digits=10, decimal_places=2) 
+    valor_frete = models.FloatField(max_digits=10, decimal_places=2) 
+    desconto = models.FloatField(max_digits=10, decimal_places=2)
+    valor_total_liquido = models.FloatField(max_digits=10, decimal_places=2)
+    transportadora_id = models.ForeignKey(Transportadoras, on_delete=models.CASCADE)
+    forma_pagto_id = models.ForeignKey(FormaPagto, on_delete=models.CASCADE)
+    status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
+class Produto(models.Model):
+    id = models.AutoField(primary_key=True)
+    descricao = models.CharField(max_length=100)
+    tamanho = models.CharField(max_length=50)
+    cor = models.CharField(max_length=50)
+    valor_custo = models.FloatField(max_digits=10, decimal_places=2)
+    valor_venda = models.FloatField(max_digits=10, decimal_places=2)
+    obs = models.TextField(max_length=255)
+class Item_pedido(models.Model):
+    produto_id = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    valor_custo = models.FloatField(max_digits=10, decimal_places=2)
+    valor_venda = models.FloatField(max_digits=10, decimal_places=2)
+    quantidade = models.IntegerField(max_length=3)
+    nome_crianca = models.CharField(max_length=100)   
+    dt_nasc_crianca = models.DateField(Required=False)
+    medidas = models.CharField(max_length=200)
+    sexo = models.CharField(max_length=12) 
+
+

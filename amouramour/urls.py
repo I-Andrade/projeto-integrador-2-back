@@ -19,9 +19,18 @@ from rest_framework import routers
 from amouramour.api import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'Cliente', views.ClienteViewSet)
+router.register(r'Transportadora', views.TransportadoraViewSet)
+router.register(r'FormaPagto', views.FormaPagtoViewSet)
+router.register(r'Status', views.StatusViewSet)
+router.register(r'Pedido', views.PedidoViewSet)
+router.register(r'Produto', views.ProdutoViewSet)
+router.register(r'Item_pedido', views.Item_pedidoViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),

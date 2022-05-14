@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from amouramour.api.models import Cliente, FormaPagto, Pedido, Produto, Status, Transportadora
+from amouramour.api.models import Cliente, FormaPagto, Pedido, Produto, Status, Transportadora, Item_pedido
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -44,4 +44,9 @@ class ProdutoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Produto
         fields = '__all__'
+
+class Item_pedidoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Item_pedido
+        fields = '__all__'        
 

@@ -34,7 +34,7 @@ class Status(models.Model):
 
 class Pedido(models.Model):
     id = models.AutoField(primary_key=True)
-    cliente_id = models.ForeignKey(Clientes, on_delete=models.CASCADE)
+    cliente_id = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     data_pedido = models.DateField()
     data_entrega = models.DateField()
     obs = models.TextField(max_length=255)  
@@ -43,7 +43,7 @@ class Pedido(models.Model):
     valor_frete = models.FloatField(max_length=10) 
     desconto = models.FloatField(max_length=10)
     valor_total_liquido = models.FloatField(max_length=10)
-    transportadora_id = models.ForeignKey(Transportadoras, on_delete=models.CASCADE)
+    transportadora_id = models.ForeignKey(Transportadora, on_delete=models.CASCADE)
     forma_pagto_id = models.ForeignKey(FormaPagto, on_delete=models.CASCADE)
     status_id = models.ForeignKey(Status, on_delete=models.CASCADE)
 

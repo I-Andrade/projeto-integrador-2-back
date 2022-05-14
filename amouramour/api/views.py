@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from django.db.models import Cliente, Transportadora, FormaPagto, Status, Pedido, Produto, Item_pedido
+from amouramour.api.models import Cliente, Transportadora, FormaPagto, Status, Pedido, Produto, Item_pedido
 from rest_framework import viewsets
 from amouramour.api.serializers import UserSerializer, GroupSerializer, ClienteSerializer, TransportadoraSerializer, FormaPagtoSerializer, StatusSerializer, PedidoSerializer, ProdutoSerializer, Item_pedidoSerializer
 

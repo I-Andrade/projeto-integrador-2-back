@@ -1,14 +1,11 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-
 from amouramour.api.models import Cliente, FormaPagto, Pedido, Produto, Status, Transportadora, Item_pedido
-
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'groups']
-
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -36,8 +33,11 @@ class StatusSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 class PedidoSerializer(serializers.HyperlinkedModelSerializer):
+    #cliente = ClienteSerializer(many=False, read_only=True)
+
     class Meta:
         model = Pedido
+        #fields = ['cliente_id','cliente']
         fields = '__all__'
 
 class ProdutoSerializer(serializers.HyperlinkedModelSerializer):

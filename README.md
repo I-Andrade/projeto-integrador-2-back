@@ -18,3 +18,7 @@ Faça a primeira Migrate python manage.py migrate
 Crie um SuperUser python manage.py createsuperuser
 
 Rodar o projeto python manage.py runserver
+
+
+Incluido arquivo Insomnia_amouramourAPI.json
+Ele pode ser usado para importar as rotas já cadastradas para serem testadas no Insomnia!

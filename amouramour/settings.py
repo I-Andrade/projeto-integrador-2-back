@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-8by)-b!1x!jqnmvtkhh1=ywplz%-z(=t56wpra(zgdf$^g(rne
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -43,17 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'amouramour.api',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework_simplejwt.authentication.JWTAuthentication',
-	),
-    'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.IsAuthenticated',
-	)
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+	#	'rest_framework_simplejwt.authentication.JWTAuthentication',
+	#),
+    #'DEFAULT_PERMISSION_CLASSES': (
+	#	'rest_framework.permissions.IsAuthenticated',
+	#)
 }
 
 MIDDLEWARE = [
@@ -64,7 +65,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
+
+
 
 ROOT_URLCONF = 'amouramour.urls'
 

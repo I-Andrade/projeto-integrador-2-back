@@ -12,6 +12,7 @@ class Cliente(models.Model):
     email = models.CharField(max_length=254, null=True)
     cep = models.CharField(max_length=8, null=True)
     logradouro = models.CharField(max_length=60, null=True)
+    numero = models.CharField(max_length=10, null=True)
     bairro = models.CharField(max_length=60, null=True)
     complemento = models.CharField(max_length=200, null=True)
     cidade = models.CharField(max_length=60, null=True)

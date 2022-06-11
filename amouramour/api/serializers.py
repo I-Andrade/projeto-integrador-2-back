@@ -35,9 +35,27 @@ class ProdutoSerializer(ModelSerializer):
 class PedidoSerializer(ModelSerializer):
     produtos = ProdutoSerializer(many=True, read_only=True)
     nome_cliente = SerializerMethodField()
+    status = SerializerMethodField()
+    transportadora = SerializerMethodField()
+    forma_pagto = SerializerMethodField()
+    parcelas = SerializerMethodField()
+    #status_id = StatusSerializer(many=False, read_only=True)
+    #transportadora_id = TransportadoraSerializer(many=False, read_only=True)
+    #forma_pagto_id = FormaPagtoSerializer(many=False, read_only=True)
+    #cliente_id = ClienteDetalhesSerializer(many=False, read_only=False)
 
     def get_nome_cliente(self, obj): 
         return obj.cliente_id.nome
+    def get_status(self, obj): 
+        return obj.status_id.descricao
+    def get_status(self, obj): 
+        return obj.status_id.descricao
+    def get_transportadora(self, obj): 
+        return obj.transportadora_id.nome
+    def get_forma_pagto(self, obj): 
+        return obj.forma_pagto_id.descricao
+    def get_parcelas(self, obj):     
+        return obj.forma_pagto_id.parcelas
 
     class Meta:
         model = Pedido

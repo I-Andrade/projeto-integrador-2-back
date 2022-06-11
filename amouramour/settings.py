@@ -49,12 +49,12 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework_simplejwt.authentication.JWTAuthentication',
-	),
-    'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.IsAuthenticated',
-	)
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+	#	'rest_framework_simplejwt.authentication.JWTAuthentication',
+	#),
+    #'DEFAULT_PERMISSION_CLASSES': (
+	#	'rest_framework.permissions.IsAuthenticated',
+	#)
 }
 
 MIDDLEWARE = [
@@ -102,6 +102,10 @@ DATABASES = {
         'PASSWORD': 'f03c9cca',
         'HOST': 'us-cdbr-east-05.cleardb.net',
         'PORT': '3306',
+    },
+    'local': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

@@ -1,52 +1,56 @@
 from django.contrib.auth.models import User, Group
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from amouramour.api.models import Cliente, FormaPagto, Pedido, Produto, Status, Transportadora, Item_pedido
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'groups']
 
-class GroupSerializer(serializers.ModelSerializer):
+class GroupSerializer(ModelSerializer):
     class Meta:
         model = Group
         fields = ['id', 'name']
 
-class ClienteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cliente
-        fields = '__all__'
-
-class TransportadoraSerializer(serializers.ModelSerializer):
+class TransportadoraSerializer(ModelSerializer):
     class Meta:
         model = Transportadora
-        fields = '__all__'
+        fields = '__all__' 
 
-class FormaPagtoSerializer(serializers.ModelSerializer):
+class FormaPagtoSerializer(ModelSerializer):
     class Meta:
         model = FormaPagto
         fields = '__all__'
 
-class StatusSerializer(serializers.ModelSerializer):
+class StatusSerializer(ModelSerializer):
     class Meta:
         model = Status
         fields = '__all__'
 
-class PedidoSerializer(serializers.ModelSerializer):
-    #cliente = ClienteSerializer(many=False, read_only=True)
-
-    class Meta:
-        model = Pedido
-        #fields = ['cliente_id','cliente']
-        fields = '__all__'
-
-class ProdutoSerializer(serializers.ModelSerializer):
+class ProdutoSerializer(ModelSerializer):
     class Meta:
         model = Produto
         fields = '__all__'
 
-class Item_pedidoSerializer(serializers.ModelSerializer):
+class PedidoSerializer(ModelSerializer):
+    produtos = ProdutoSerializer(many=True, read_only=True)
+    nome_cliente = SerializerMethodField()
+
+    def get_nome_cliente(self, obj): 
+        return obj.cliente_id.nome
+
+    class Meta:
+        model = Pedido
+        fields = '__all__'
+
+class ClienteSerializer(ModelSerializer):
+    pedidos = PedidoSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Cliente
+        fields = '__all__'
+
+class Item_pedidoSerializer(ModelSerializer):
     class Meta:
         model = Item_pedido
-        fields = '__all__'        
-
+        fields = '__all__'

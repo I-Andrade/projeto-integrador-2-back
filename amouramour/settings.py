@@ -96,6 +96,14 @@ WSGI_APPLICATION = 'amouramour.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'heroku_08e5ce46dc0ec4d',
+        'USER': 'b534adc51d7f31',
+        'PASSWORD': 'f03c9cca',
+        'HOST': 'us-cdbr-east-05.cleardb.net',
+        'PORT': '3306',
+    },
+    'local': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }

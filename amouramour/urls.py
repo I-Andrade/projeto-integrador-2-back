@@ -19,8 +19,8 @@ from rest_framework import routers
 from amouramour.api import views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-
-router = routers.DefaultRouter()
+#router = routers.DefaultRouter()
+router = routers.SimpleRouter(trailing_slash=False)
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'Cliente', views.ClienteViewSet)
